@@ -13,6 +13,7 @@ dist
 dist-ssr
 *.local
 .eslintcache
+public/Cesium-1.117
 
 # Editor directories and files
 # .vscode/*
