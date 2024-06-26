@@ -48,6 +48,8 @@ import {
 } from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import { getEnv } from '/@/utils/env';
+import cameraImgUrl from '/@/assets/images/demo/camera.png';
+import smokeImgUrl from '/@/assets/images/demo/smoke.png';
 
 window.CESIUM_BASE_URL = getEnv().VITE_PUBLIC_PATH + 'libs/Cesium-1.117/Build/Cesium/';
 Ion.defaultAccessToken =
@@ -239,7 +241,7 @@ const drawCamera = () => {
       name: 'camera',
       position: item,
       billboard: {
-        image: '/images/camera.png',
+        image: cameraImgUrl,
         width: 20,
         height: 20,
         heightReference: HeightReference.CLAMP_TO_3D_TILE
@@ -336,7 +338,7 @@ const drawFire = () => {
   const modelMatrix = Matrix4.fromTranslation(position, new Matrix4());
   const particle = viewer!.scene.primitives.add(
     new ParticleSystem({
-      image: '/images/smoke.png',
+      image: smokeImgUrl,
       imageSize: new Cartesian2(30, 30),
       emitter: new CircleEmitter(100),
       modelMatrix,
