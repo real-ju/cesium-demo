@@ -47,8 +47,9 @@ import {
   Ellipsoid
 } from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
+import { getEnv } from '/@/utils/env';
 
-window.CESIUM_BASE_URL = '/libs/Cesium-1.117/Build/Cesium/';
+window.CESIUM_BASE_URL = getEnv().VITE_PUBLIC_PATH + 'libs/Cesium-1.117/Build/Cesium/';
 Ion.defaultAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNzYyMTVmOS0yNjlmLTQ0Y2UtOGFjOS00MmMwZGJjNGUxZGYiLCJpZCI6MjEwNTgxLCJpYXQiOjE3MTM4NTI1ODV9.adopnWJEcR84Txv9e4TpjHWEXXc3LMYAj1Mhvr6dMTQ';
 
