@@ -49,6 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     },
     build: {
       // outDir: 'dist' + viteEnv.VITE_PUBLIC_PATH,
+      outDir: 'docs',
       sourcemap: mode === 'development'
     }
   };
