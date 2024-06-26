@@ -48,7 +48,7 @@ import {
 } from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
-window.CESIUM_BASE_URL = '/Cesium-1.117/Build/Cesium/';
+window.CESIUM_BASE_URL = '/libs/Cesium-1.117/Build/Cesium/';
 Ion.defaultAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNzYyMTVmOS0yNjlmLTQ0Y2UtOGFjOS00MmMwZGJjNGUxZGYiLCJpZCI6MjEwNTgxLCJpYXQiOjE3MTM4NTI1ODV9.adopnWJEcR84Txv9e4TpjHWEXXc3LMYAj1Mhvr6dMTQ';
 
@@ -57,6 +57,7 @@ const cesiumContainer = ref();
 
 let viewer: Viewer | null = null;
 
+// 初始化场景
 const initScene = async () => {
   viewer = new Viewer(cesiumContainer.value, {
     geocoder: false,
@@ -163,6 +164,7 @@ const initScene = async () => {
   // });
 };
 
+// 实体集合
 const entitySet: Recordable = {
   camera: [],
   areaName: [],
@@ -170,6 +172,7 @@ const entitySet: Recordable = {
   wall: []
 };
 
+// 绘制区域名
 const drawAreaName = () => {
   const areas: Recordable[] = [
     {
@@ -214,6 +217,7 @@ const drawAreaName = () => {
   });
 };
 
+// 绘制摄像头图标
 const drawCamera = () => {
   const cameraPositions: Cartesian3[] = [
     Cartesian3.fromDegrees(106.5092575976, 29.5906347404, 150),
@@ -244,6 +248,7 @@ const drawCamera = () => {
   });
 };
 
+// 绘制事件提示器
 const drawEventIndicator = async () => {
   const animationStartTimestamp = Date.now();
   const animationDuration = 2000;
@@ -304,6 +309,7 @@ const drawEventIndicator = async () => {
   });
 };
 
+// 绘制光墙
 const drawWall = () => {
   const positions: Cartesian3[] = [
     Cartesian3.fromDegrees(106.5339864312, 29.5984674974, 100),
@@ -323,6 +329,7 @@ const drawWall = () => {
   entitySet.wall.push(wall);
 };
 
+// 绘制火焰
 const drawFire = () => {
   const position = Cartesian3.fromDegrees(106.5183455988, 29.5899340745, 20);
   const modelMatrix = Matrix4.fromTranslation(position, new Matrix4());
@@ -340,6 +347,7 @@ const drawFire = () => {
   );
 };
 
+// 初始化事件
 const initEvent = () => {
   if (!viewer) {
     return;
@@ -376,7 +384,8 @@ const pickEventIndicator = (entity: Entity) => {
   });
 };
 
-const drawlightCircle = () => {
+// 初始化光圈Canvas
+const initLightCircle = () => {
   const ctx = lightCircleCanvas.value.getContext('2d');
   const radialgradient = ctx.createRadialGradient(250, 250, 0, 250, 250, 250);
   radialgradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
@@ -388,7 +397,7 @@ const drawlightCircle = () => {
 };
 
 onMounted(() => {
-  drawlightCircle();
+  initLightCircle();
   initScene();
   initEvent();
   drawAreaName();
